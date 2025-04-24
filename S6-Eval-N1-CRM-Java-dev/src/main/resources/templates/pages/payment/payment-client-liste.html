@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="~{pages/layout/main-layout}" lang="fr">
+<head>
+    <title>Détails des paiements d'un client</title>
+</head>
+<body>
+
+<div layout:fragment="content" class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-10 offset-md-1">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Détails des paiements d'un client</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Montant</th>
+                                    <th scope="col">Source</th>
+                                    <th scope="col">Invoice external Id</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr th:each="payment : ${payments.payments}">
+                                    <td th:text="${#temporals.format(payment.payment_date, 'dd/MM/yyyy')}"></td>
+                                    <td th:text="${payment.getAmountReel()}"></td>
+                                    <td th:text="${payment.payment_source}"></td>
+                                    <td>
+                                        <span th:text="${payment.invoice.external_id}"></span>
+                                        (Total: <span th:text="${payment.invoice.total_price}"></span>)
+                                    </td>
+                                    <td>
+                                        <a th:href="@{/payments/{externalId}(externalId=${payment.external_id})}" 
+                                           class="btn btn-sm btn-warning">
+                                            Modifier
+                                        </a>
+        
+                                        <a th:href="@{/payments/delete/{externalId}(externalId=${payment.external_id})}" 
+                                           class="btn btn-sm btn-danger">
+                                            Supprimer
+                                        </a>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- .animated -->
+    
+</div>
+</body>
+</html>
+
