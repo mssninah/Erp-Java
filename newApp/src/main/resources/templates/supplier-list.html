@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier List</title>
+</head>
+<body>
+    <h1>Select Supplier</h1>
+    <form action="/supplier-quotations" method="get">
+        <label for="supplier">Supplier:</label>
+        <select name="supplier" id="supplier" required>
+            <option value="">Select a Supplier</option>
+            <!-- Loop through the suppliers -->
+            <th:block th:each="supplier : ${suppliers}">
+                <option th:value="${supplier.name}" th:text="${supplier.name}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Show Quotations</button>
+    </form>
+
+    
+</body>
+</html>

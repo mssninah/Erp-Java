@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotation Details</title>
+</head>
+<body>
+    <h1>Quotation Details</h1>
+    <div>
+        <!-- Accéder correctement aux valeurs dans 'data' -->
+        <p><strong>Title:</strong> <span th:text="${details['data']['title']}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${details['data']['status']}"></span></p>
+        <p><strong>Date:</strong> <span th:text="${details['data']['transaction_date']}"></span></p>
+        <p><strong>Valid Till:</strong> <span th:text="${details['data']['valid_till']}"></span></p>
+        <p><strong>Grand Total:</strong> <span th:text="${details['data']['grand_total']}"></span></p>
+        
+        <h3>Items</h3>
+        <ul>
+            <!-- Boucle sur les items de la quotation -->
+            <th:block th:each="item : ${details['data']['items']}">
+                <li th:text="'Item: ' + ${item['item_name']} + ', Quantity: ' + ${item['qty']} + ', Rate: ' + ${item['rate']}"></li>
+            </th:block>
+        </ul>
+    </div>
+</body>
+</html>

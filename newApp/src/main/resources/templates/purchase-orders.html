@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Orders</title>
+</head>
+<body>
+    <h1>Purchase Orders</h1>
+    <div>
+        <h3>Purchase Orders for Supplier: <span th:text="${supplier}"></span></h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Supplier Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Grand Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="order : ${purchaseOrders}">
+                    <tr>
+                        <td th:text="${order['name']}"></td> <!-- Order ID -->
+                        <td th:text="${order['supplier_name']}"></td> <!-- Supplier Name -->
+                        <td th:text="${order['status']}"></td> <!-- Status -->
+                        <td th:text="${order['transaction_date']}"></td> <!-- Date -->
+                        <td th:text="${order['grand_total']}"></td> <!-- Grand Total -->
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
