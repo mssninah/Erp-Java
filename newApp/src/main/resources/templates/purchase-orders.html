@@ -17,6 +17,9 @@
                     <th>Status</th>
                     <th>Date</th>
                     <th>Grand Total</th>
+                    <th>% Billed</th> <!-- New column for % Billed -->
+                    <th>% Received</th> <!-- New column for % Received -->
+                    <th>Action</th> <!-- Add an Action column for the View Details button -->
                 </tr>
             </thead>
             <tbody>
@@ -27,6 +30,13 @@
                         <td th:text="${order['status']}"></td> <!-- Status -->
                         <td th:text="${order['transaction_date']}"></td> <!-- Date -->
                         <td th:text="${order['grand_total']}"></td> <!-- Grand Total -->
+                        <td th:text="${order['per_billed']}"></td> <!-- % Billed -->
+                        <td th:text="${order['per_received']}"></td> <!-- % Received -->
+                        <!-- Add View Details button for each order -->
+                        <td>
+                            <a th:href="@{'/purchase-order-details/' + ${order['name']}}" 
+                               th:text="'View Details'"></a>
+                        </td>
                     </tr>
                 </th:block>
             </tbody>

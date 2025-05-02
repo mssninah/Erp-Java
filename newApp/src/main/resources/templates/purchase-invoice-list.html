@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Invoices</title>
+</head>
+<body>
+    <h1>Purchase Invoices</h1>
+    <div>
+        <h3>Purchase Invoices for Supplier: <span th:text="${supplier}"></span></h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Invoice ID</th>
+                    <th>Supplier Name</th>
+                    <th>Status</th>
+                    <th>Posting Date</th>
+                    <th>Grand Total</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="invoice : ${purchaseInvoices}">
+                    <tr>
+                        <td th:text="${invoice.name}"></td> <!-- Invoice ID -->
+                        <td th:text="${invoice.supplier_name}"></td> <!-- Supplier Name -->
+                        <td th:text="${invoice.status}"></td> <!-- Status -->
+                        <td th:text="${invoice.posting_date}"></td> <!-- Posting Date -->
+                        <td th:text="${invoice.grand_total}"></td> <!-- Grand Total -->
+                        <td>
+                            <a th:href="@{'/purchase-invoice-details/' + ${invoice.name}}" 
+                               th:text="'View Details'"></a> <!-- View Details button -->
+                            |
+                            <a th:href="@{'/pay-purchase-invoice/' + ${invoice.name}}" 
+                               th:text="'Pay'"></a> <!-- Pay button -->
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

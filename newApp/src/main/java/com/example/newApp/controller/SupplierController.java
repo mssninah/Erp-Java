@@ -50,7 +50,7 @@ public class SupplierController {
     }
 
     // Afficher les détails d'une commande d'achat
-    @GetMapping("/purchase-orders/{id}")
+    @GetMapping("/purchase-order-details/{id}")
     public String getPurchaseOrderDetails(@PathVariable String id, Model model) {
         Map<String, Object> details = supplierService.getPurchaseOrderDetails(id);
         model.addAttribute("details", details);

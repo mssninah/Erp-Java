@@ -7,6 +7,8 @@
 </head>
 <body>
     <h1>Select Supplier</h1>
+
+    <!-- Form to show Supplier Quotations -->
     <form action="/supplier-quotations" method="get">
         <label for="supplier">Supplier:</label>
         <select name="supplier" id="supplier" required>
@@ -19,6 +21,18 @@
         <button type="submit">Show Quotations</button>
     </form>
 
+    <!-- Form to show Purchase Orders -->
+    <form action="/purchase-orders" method="get">
+        <label for="purchaseSupplier">Supplier:</label>
+        <select name="supplier" id="purchaseSupplier" required>
+            <option value="">Select a Supplier</option>
+            <!-- Loop through the suppliers again, or you can use the same list -->
+            <th:block th:each="supplier : ${suppliers}">
+                <option th:value="${supplier.name}" th:text="${supplier.name}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Show Purchase Orders</button>
+    </form>
     
 </body>
 </html>
