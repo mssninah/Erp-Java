@@ -1,0 +1,79 @@
+To pay an employee in Frappe HR (or ERPNext HR module), you typically follow these steps:
+
+---
+
+### **1. Create a Salary Structure**
+
+A salary structure defines the components of the employee's salary.
+
+1. Go to **Human Resources > Payroll > Salary Structure**.
+2. Click on **New**.
+3. Fill in the details:
+
+   * **Employee**: Select the employee for whom the salary structure is being created.
+   * **Earning Components**: Add components like Basic Salary, Allowances, etc.
+   * **Deduction Components**: Add components like Taxes, Insurance, etc.
+4. Save the salary structure.
+
+---
+
+### **2. Assign the Salary Structure**
+
+Assign the created salary structure to the employee.
+
+1. Go to **Human Resources > Payroll > Salary Structure Assignment**.
+2. Click on **New**.
+3. Select the **Employee** and the **Salary Structure**.
+4. Set the effective date for the assignment.
+5. Save the assignment.
+
+---
+
+### **3. Process Payroll**
+
+This is where the actual payment process begins.
+
+1. Go to **Human Resources > Payroll > Payroll Entry**.
+2. Click on **New**.
+3. Fill in the details:
+
+   * **Posting Date**: Date when the payroll is being processed.
+   * **Start Date & End Date**: Period for which payroll is being processed (e.g., one month).
+   * **Company**: The name of the company.
+   * **Salary Slip Based On**: Choose **Attendance** or **Payment Days**.
+4. Click on **Get Employees** to fetch the list of employees with assigned salary structures.
+5. Verify the list and amounts, then **Save**.
+
+---
+
+### **4. Submit Salary Slips**
+
+1. Once the payroll is saved, click on **Create Salary Slips**.
+2. Review individual salary slips for each employee.
+3. Submit the salary slips.
+
+---
+
+### **5. Make the Payment**
+
+1. Go to **Human Resources > Payroll > Salary Slip**.
+2. Open the submitted salary slip for the employee.
+3. Click on **Make Payment**.
+4. Fill in the payment details:
+
+   * Mode of Payment (Bank Transfer, Cash, etc.).
+   * Bank or account information if applicable.
+5. Submit the payment.
+
+---
+
+### **6. Generate Reports (Optional)**
+
+You can generate reports to review payroll details:
+
+* **Salary Register**: Shows all salaries processed in a given period.
+* **Bank Remittance**: Generates details for transferring salaries via the bank.
+
+---
+
+If you encounter any errors or need help with specific configurations, let me know!

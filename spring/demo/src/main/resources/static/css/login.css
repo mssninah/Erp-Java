@@ -1,152 +1,59 @@
-/* login.css - Style moderne et girly */
-
-/* Couleurs de base */
-:root {
-    --primary-color: #FF9EB7; /* Rose pastel */
-    --secondary-color: #A5D8FF; /* Bleu pastel */
-    --accent-color: #FFD6E0; /* Rose très clair */
-    --text-color: #5A5A5A; /* Gris foncé pour le texte */
-    --light-bg: #FFF9FB; /* Fond très clair rosé */
-    --error-color: #FF6B6B; /* Rouge pastel pour les erreurs */
-    --success-color: #88D8B0; /* Vert pastel */
-}
-
-body {
-    background-color: var(--light-bg);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
-    background-image: radial-gradient(circle at 10% 20%, var(--accent-color) 0%, transparent 20%), 
-                      radial-gradient(circle at 90% 80%, var(--secondary-color) 0%, transparent 20%);
-    background-attachment: fixed;
-}
-
-.container {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
 .card {
     border: none;
-    border-radius: 20px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(255, 158, 183, 0.2);
+    border-radius: 10px;
+    background: white;
 }
 
 .card-body {
-    padding: 2.5rem;
+    padding: 2.5rem !important;
 }
 
-h2 {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-bottom: 10px;
+.form-control {
+    border-radius: 5px;
+    padding: 12px;
+    border: 1px solid #ced4da;
 }
 
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    border-radius: 3px;
+.form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    border-color: #80bdff;
+}
+
+.btn-primary {
+    padding: 12px;
+    font-weight: 500;
+    background-color: #0d6efd;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+.alert {
+    border-radius: 5px;
+    font-size: 0.9rem;
 }
 
 .form-label {
     font-weight: 500;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
+    color: #495057;
 }
 
-.form-control {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 12px 15px;
-    transition: all 0.3s ease;
-    background-color: rgba(255, 255, 255, 0.8);
+/* Animation pour le chargement de la page */
+.card {
+    animation: fadeIn 0.5s ease;
 }
 
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.25rem rgba(255, 158, 183, 0.25);
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: 10px;
-    padding: 12px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-}
-
-.btn-primary:hover {
-    background-color: #ff8aa8;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 158, 183, 0.4);
-}
-
-.alert-danger {
-    background-color: var(--error-color);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px;
-}
-
-/* Animation */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Effet de vague décoratif en bas de la carte */
-.card::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
-    background-size: 200% auto;
-    animation: gradientWave 3s ease infinite;
-}
-
-@keyframes gradientWave {
-    0% {
-        background-position: 0% center;
-    }
-    50% {
-        background-position: 100% center;
-    }
-    100% {
-        background-position: 0% center;
-    }
-}
-
-/* Responsive */
-@media (max-width: 576px) {
-    .card-body {
-        padding: 1.5rem;
     }
 }
