@@ -1,0 +1,46 @@
+
+
+--create formulaire  pour creer Supplier quotation
+
+    
+    -select supplier => use SupplierService List<SupplierDTO> getSuppliers(String sid) 
+
+    -set company => Ninah-company
+
+    -set status Draft => Draft
+
+    -set date
+
+
+    Tableau Insertions
+    no(static), select item , quantity , uom set Unit, Rate set zero, select Warehouse 
+
+
+--create service
+ @GetMapping
+    public String showformulaire(
+            @CookieValue(name = "sid", required = true) String sid,
+            Model model) {
+                
+        List<QuotationItemDTO> item = formulaireService.getItem(sid);
+        List<WarehouseDTO> warehouses = formulaireService.getWarehouseDTOs(sid);
+        List<SupplierDTO> suppliers = supplierService.getSuppliers(sid);
+        model.addAttribute("suppliers", suppliers);
+        return "form/form";
+    }
+    -creer formulaire 
+        -getallsupplier (getattribute)
+        -getcompany
+        -getitem
+        -getwarehouse
+
+
+    -traiter formulaire, 
+        create supplier quotation
+
+
+    date,item_name,item_groupe,required_by,quantity,purpose,target_warehouse,ref + supplier 
+
+
+service ok ,
+formulaire , -> todo 

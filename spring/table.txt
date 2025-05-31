@@ -1,0 +1,110 @@
+Existing App :
+    a. Création produit (item)
+        1. Tables Principales (Insertions obligatoires) :
+            -tabItem 
+            -tabItem_Default 
+        2. Table de Stock (Si opening_stock > 0) :
+            -tabStock_Ledger_Entry : Pour enregistrer le stock initial 
+        3. Tables Secondaires (Insertions conditionnelles selon les données fournies) :
+            -tabItem_Price : Si un prix standard est défini (standard_rate)
+            -tabItem_Tax : Si des taxes sont spécifiées
+            -tabItem_Barcode : Si des codes-barres sont définis
+            -tabItem_UOM_Conversion_Detail : Si des unités de mesure alternatives sont définies
+            -tabItem_Supplier : Si des fournisseurs sont spécifiés
+            -tabItem_Customer_Detail : Si des détails clients sont fournis
+            -tabItem_Reorder : Si des niveaux de réapprovisionnement sont définis
+    
+    b. Demande de besoin (Material request)
+        1. Tables Principales (Insertions obligatoires) :
+            -tabMaterial_Request : Table principale qui stocke les informations de l'en-tête
+            -tabMaterial_Request_Item : Table des lignes de la demande (items demandés)
+        2. Tables Secondaires (Mises à jour selon le contexte) :
+            -tabBin : Mise à jour des quantités demandées dans les entrepôts
+            -tabStock_Ledger_Entry : Si la demande est de type "Material Issue" ou "Material Transfer"
+        3. Tables de Référence (Lecture seule) :
+            -tabItem : Pour la validation des articles
+            -tabWarehouse : Pour la validation des entrepôts
+            -tabUOM : Pour la validation des unités de mesure
+
+    c. Faire un demande de devis a un fournisseur (quotation)
+        1. Tables Principales (Insertions obligatoires) :
+            -tabRequest_for_Quotation : Table principale qui stocke les informations de l'en-tête
+            -tabRequest_for_Quotation_Item : Table des articles pour lesquels on demande un devis
+            -tabRequest_for_Quotation_Supplier : Table des fournisseurs à qui on envoie la demande
+        2. Tables de Communication :
+            -tabCommunication : Pour enregistrer les emails envoyés aux fournisseurs
+            -tabEmail_Queue : Pour la file d'attente des emails à envoyer
+        3. Tables de Référence (Lecture seule) :
+            -tabSupplier : Pour la validation des fournisseurs
+            -tabItem : Pour la validation des articles
+            -tabSupplier_Scorecard : Pour vérifier le statut du fournisseur
+            -tabPrint_Heading : Pour les en-têtes d'impression
+            -tabEmail_Template : Pour les modèles d'emails
+    
+    d. Faire un bon de commande (purchase order)
+        1. Tables Principales (Insertions obligatoires) :
+            -tabPurchase_Order : Table principale qui stocke les informations de l'en-tête
+            -tabPurchase_Order_Item : Table des articles commandés
+            -tabPurchase_Taxes_and_Charges : Table des taxes et frais
+        2. Tables de Mise à jour :
+            -tabBin : Mise à jour des quantités commandées
+            -tabMaterial_Request : Mise à jour du statut si lié
+            -tabSupplier_Quotation : Mise à jour du statut si lié
+        3. Tables de Référence (Lecture seule) :
+            -tabSupplier : Informations fournisseur
+            -tabItem : Informations articles
+            -tabPrice_List : Liste de prix
+            -tabTax_Category : Catégories de taxes
+            -tabPayment_Terms_Template : Conditions de paiement
+
+    e. recevoir facture (Purchase Invoice)
+        1. Tables Principales (Insertions obligatoires) :
+            -tabPurchase_Invoice : Table principale qui stocke les informations de l'en-tête
+            -tabPurchase_Invoice_Item : Table des articles facturés
+            -tabPurchase_Taxes_and_Charges : Table des taxes et frais
+        2. Tables Comptables (Insertions automatiques) :
+            -tabGL_Entry : Écritures comptables générées
+            -tabPayment_Schedule : Échéancier de paiement
+            -tabPayment_Ledger_Entry : Registre des paiements
+        3. Tables de Mise à jour 
+            -tabPurchase_Order : Mise à jour du statut de facturation
+            -tabPurchase_Receipt : Mise à jour du statut de facturation
+            -tabBin : Mise à jour des valeurs de stock
+        4.Tables de Référence (Lecture seule) :
+            -tabSupplier : Informations fournisseur
+            -tabItem : Informations articles
+            -tabAccount : Comptes comptables
+            -tabCost_Center : Centres de coûts
+            -tabPrice_List : Liste de prix
+
+
+Tables à VIDER (Tables transactionnelles) :
+
+Achats :
+    tabMaterial_Request
+    tabMaterial_Request_Item
+    tabRequest_for_Quotation
+    tabRequest_for_Quotation_Item
+    tabRequest_for_Quotation_Supplier
+    tabPurchase_Order
+    tabPurchase_Order_Item
+    tabPurchase_Receipt
+    tabPurchase_Receipt_Item
+    tabPurchase_Invoice
+    tabPurchase_Invoice_Item
+Stock :
+    tabStock_Entry
+    tabStock_Entry_Detail
+    tabStock_Ledger_Entry
+    tabBin (quantités en stock)
+    Comptabilité :
+    tabGL_Entry (écritures comptables)
+    tabPayment_En
+    tabPayment_Schedule
+    tabPayment_Ledger_Entry
+    tabJournal_Entry
+    tabJournal_Entry_Account
+    
+
+
+

@@ -1,0 +1,242 @@
+/* liste.css - Style girly moderne pour les pages de liste et détails */
+
+:root {
+    --primary-pink: #FF7EB9;
+    --soft-mint: #7AF0D7;
+    --light-lavender: #C792EA;
+    --pale-yellow: #FFD166;
+    --light-bg: #FFF5F9;
+    --dark-text: #2E2E3A;
+    --card-shadow: 0 4px 20px rgba(255, 126, 185, 0.1);
+    --alert-success-bg: #E3F9F5;
+    --alert-danger-bg: #FFEEF1;
+}
+
+/* Styles de base */
+body {
+    background-color: #fafafa;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+}
+
+.container {
+    padding-top: 2rem;
+}
+
+/* En-tête de page */
+.page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.page-header h2 {
+    font-weight: 600;
+    color: var(--primary-pink);
+}
+
+.page-header .text-muted {
+    color: var(--light-lavender) !important;
+}
+
+/* Alertes */
+.alert {
+    border: none;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background-color: var(--alert-success-bg);
+    color: var(--soft-mint);
+    border-left: 4px solid var(--soft-mint);
+}
+
+.alert-danger {
+    background-color: var(--alert-danger-bg);
+    color: #FF9AA2;
+    border-left: 4px solid #FF9AA2;
+}
+
+/* Cartes */
+.card {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 1.5rem;
+    background-color: white;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px 16px 0 0 !important;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--dark-text);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Tableaux */
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.table tbody td {
+    padding: 1.25rem 1.5rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 126, 185, 0.05);
+}
+
+.table tfoot td {
+    font-weight: 500;
+    background-color: var(--light-bg);
+}
+
+/* Colonnes de montant */
+.amount-col {
+    text-align: right;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: right;
+}
+
+/* Badges de statut */
+.payment-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 120px;
+    text-align: center;
+}
+
+.badge-paid {
+    background-color: var(--soft-mint) !important;
+    color: var(--dark-text) !important;
+}
+
+.badge-unpaid {
+    background-color: #FF9AA2 !important;
+    color: white !important;
+}
+
+.badge-partly {
+    background-color: var(--pale-yellow) !important;
+    color: var(--dark-text) !important;
+}
+
+/* Boutons */
+.btn {
+    border-radius: 10px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-pink);
+    border-color: var(--primary-pink);
+}
+
+.btn-primary:hover {
+    background-color: #FF6BA3;
+    border-color: #FF6BA3;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: white;
+    border-color: var(--primary-pink);
+    color: var(--primary-pink);
+}
+
+.btn-secondary:hover {
+    background-color: var(--light-bg);
+    border-color: var(--primary-pink);
+    color: var(--primary-pink);
+}
+
+/* Formulaires */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-pink);
+    box-shadow: 0 0 0 0.2rem rgba(255, 126, 185, 0.25);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--dark-text);
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .table thead th, 
+    .table tbody td {
+        padding: 0.75rem;
+    }
+    
+    .payment-badge {
+        min-width: 100px;
+        font-size: 0.8rem;
+    }
+}
