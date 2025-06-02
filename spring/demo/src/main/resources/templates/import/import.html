@@ -4,6 +4,85 @@
     <title>Import Files</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/import.css}">
+    <style>
+        /* Style pour la modale de confirmation */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .modal-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .modal-btn-cancel {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .modal-btn-cancel:hover {
+            background: #edf2f7;
+        }
+        
+        .modal-btn-confirm {
+            background: #f56565;
+            color: white;
+            border: none;
+        }
+        
+        .modal-btn-confirm:hover {
+            background: #e53e3e;
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
@@ -34,11 +113,61 @@
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
 
-           <!-- Reset Data Button -->
-     <form th:action="@{/reset-data}" method="post">
-        <button type="submit" class="btn btn-danger">Reset Data</button>
-    </form>
+        <!-- Reset Data Button -->
+        <form th:action="@{/import/reset-data}" method="post" id="resetForm">
+            <button type="button" class="btn btn-danger" id="resetButton">Reset Data</button>
+        </form>
+    </div>
+    
+    <!-- Modal de confirmation -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-title">Confirmation requise</div>
+            <p>Êtes-vous sûr de vouloir effacer toutes les données ? Cette action est irréversible.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelButton">Annuler</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmButton">Confirmer</button>
+            </div>
+        </div>
     </div>
   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resetButton = document.getElementById('resetButton');
+            const confirmModal = document.getElementById('confirmModal');
+            const cancelButton = document.getElementById('cancelButton');
+            const confirmButton = document.getElementById('confirmButton');
+            const resetForm = document.getElementById('resetForm');
+            
+            // Ouvrir la modale au clic sur Reset
+            resetButton.addEventListener('click', function() {
+                confirmModal.classList.add('active');
+            });
+            
+            // Annuler la suppression
+            cancelButton.addEventListener('click', function() {
+                confirmModal.classList.remove('active');
+            });
+            
+            // Confirmer la suppression
+            confirmButton.addEventListener('click', function() {
+                resetForm.submit();
+            });
+            
+            // Fermer la modale en cliquant à l'extérieur
+            confirmModal.addEventListener('click', function(e) {
+                if (e.target === confirmModal) {
+                    confirmModal.classList.remove('active');
+                }
+            });
+            
+            // Fermer avec la touche Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && confirmModal.classList.contains('active')) {
+                    confirmModal.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

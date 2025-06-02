@@ -1,14 +1,21 @@
 package com.example.demo.controller.RH;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.service.RH.ImportService;
+
 @Controller
 @RequestMapping("import")
 public class ImportController {
+
+    @Autowired
+    public ImportService importService;
 
     /**
      * Displays the import form page.
@@ -56,4 +63,22 @@ public class ImportController {
 
         return "import/import"; // Reloads the same page with the result messages
     }
+   @PostMapping("/reset-data")
+    public String resetData(
+            @CookieValue(name = "sid", required = true) String sid,
+            Model model
+    ) {
+        try {
+            // Appel au service pour réinitialiser les données
+            importService.resetData(sid);
+            model.addAttribute("success", "Data has been reset successfully!");
+        } catch (Exception e) {
+            // Gestion des erreurs
+            model.addAttribute("error", "Failed to reset data: " + e.getMessage());
+        }
+
+        return "import/import"; // Recharge la même page
+    }
+
+
 }
