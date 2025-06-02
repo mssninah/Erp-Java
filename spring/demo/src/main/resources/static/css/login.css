@@ -1,59 +1,140 @@
-.card {
+/* Modern Card-Based UI - Enhanced Version */
+
+:root {
+    --primary: #4361ee;
+    --primary-hover: #3a56d4;
+    --primary-light: #ebf2ff;
+    --border-color: #e9ecef;
+    --text-primary: #2b2d42;
+    --text-secondary: #495057;
+    --success: #4cc9f0;
+    --danger: #f72585;
+    --radius: 12px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Card Enhancements */
+  .card {
     border: none;
-    border-radius: 10px;
+    border-radius: var(--radius);
     background: white;
-}
-
-.card-body {
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-body {
     padding: 2.5rem !important;
-}
-
-.form-control {
-    border-radius: 5px;
-    padding: 12px;
-    border: 1px solid #ced4da;
-}
-
-.form-control:focus {
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-    border-color: #80bdff;
-}
-
-.btn-primary {
-    padding: 12px;
+  }
+  
+  /* Form Elements */
+  .form-control {
+    border-radius: var(--radius);
+    padding: 0.875rem 1.25rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    background-color: #f8f9fa;
+  }
+  
+  .form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+    border-color: var(--primary);
+    background-color: white;
+  }
+  
+  /* Labels */
+  .form-label {
     font-weight: 500;
-    background-color: #0d6efd;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    padding: 0.875rem 1.75rem;
+    font-weight: 600;
+    background-color: var(--primary);
     border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0b5ed7;
-    transform: translateY(-1px);
-}
-
-.alert {
-    border-radius: 5px;
-    font-size: 0.9rem;
-}
-
-.form-label {
-    font-weight: 500;
-    color: #495057;
-}
-
-/* Animation pour le chargement de la page */
-.card {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
+    border-radius: var(--radius);
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  /* Alerts */
+  .alert {
+    border-radius: var(--radius);
+    font-size: 0.925rem;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid transparent;
+  }
+  
+  .alert-success {
+    background-color: rgba(76, 201, 240, 0.1);
+    border-left-color: var(--success);
+    color: var(--text-primary);
+  }
+  
+  .alert-danger {
+    background-color: rgba(247, 37, 133, 0.1);
+    border-left-color: var(--danger);
+    color: var(--text-primary);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
     from {
-        opacity: 0;
-        transform: translateY(-20px);
+      opacity: 0;
+      transform: translateY(-20px);
     }
     to {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
-}
+  }
+  
+  .card {
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  /* File Input Styling */
+  input[type="file"] {
+    padding: 1.5rem;
+    background: var(--primary-light);
+    border: 1px dashed var(--border-color);
+    transition: var(--transition);
+  }
+  
+  input[type="file"]:hover {
+    border-color: var(--primary);
+    background: rgba(67, 97, 238, 0.05);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1.75rem !important;
+    }
+    
+    .form-control {
+      padding: 0.75rem 1rem;
+    }
+  }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Import Files</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/import.css}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Import Files</h1>
+        
+        <!-- Display success message -->
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+
+        <!-- Display error messages -->
+        <div class="alert alert-danger" th:if="${error}" th:utext="${error}"></div>
+        
+        <!-- Import Form -->
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file1" class="form-label">Choose File 1:</label>
+                <input type="file" class="form-control" id="file1" name="file1" required>
+            </div>
+            <div class="mb-3">
+                <label for="file2" class="form-label">Choose File 2:</label>
+                <input type="file" class="form-control" id="file2" name="file2" required>
+            </div>
+            <div class="mb-3">
+                <label for="file3" class="form-label">Choose File 3:</label>
+                <input type="file" class="form-control" id="file3" name="file3" required>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+           <!-- Reset Data Button -->
+     <form th:action="@{/reset-data}" method="post">
+        <button type="submit" class="btn btn-danger">Reset Data</button>
+    </form>
+    </div>
+  
+</body>
+</html>

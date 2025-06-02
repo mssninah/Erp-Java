@@ -1,0 +1,152 @@
+/* import.css - Style moderne bleu/gris/vert */
+
+:root {
+    /* Palette moderne */
+    --deep-blue: #2a4365;
+    --soft-blue: #4299e1;
+    --light-blue: #ebf8ff;
+    --cool-gray: #4a5568;
+    --light-gray: #f7fafc;
+    --mint-green: #48bb78;
+    --pale-green: #f0fff4;
+  }
+  
+  /* Reset et base */
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    color: var(--cool-gray);
+    background-color: var(--light-gray);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Structure */
+  .container {
+    max-width: 640px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Typographie */
+  h1 {
+    color: var(--deep-blue);
+    font-weight: 600;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  
+  h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--mint-green);
+    margin: 0.8rem auto 0;
+  }
+  
+  /* Alertes */
+  .alert {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid transparent;
+  }
+  
+  .alert-success {
+    background-color: var(--pale-green);
+    border-left-color: var(--mint-green);
+    color: var(--cool-gray);
+  }
+  
+  .alert-danger {
+    background-color: #fff5f5;
+    border-left-color: #fc8181;
+    color: var(--cool-gray);
+  }
+  
+  /* Formulaire */
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--deep-blue);
+    font-size: 0.9rem;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: var(--light-gray);
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: var(--soft-blue);
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
+  }
+  
+  /* Bouton */
+  .btn-primary {
+    display: inline-block;
+    width: 100%;
+    padding: 0.875rem;
+    background-color: var(--mint-green);
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+  
+  .btn-primary:hover {
+    background-color: #38a169;
+    transform: translateY(-1px);
+  }
+  
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+  
+  /* File inputs */
+  input[type="file"] {
+    padding: 1.25rem;
+    background-color: var(--light-blue);
+    border: 1px dashed var(--soft-blue);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  input[type="file"]::file-selector-button {
+    visibility: hidden;
+  }
+  
+  /* Espacement */
+  .mb-3 {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 640px) {
+    .container {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
