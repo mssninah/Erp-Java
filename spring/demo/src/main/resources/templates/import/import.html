@@ -4,7 +4,69 @@
     <title>Import Files</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/import.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Styles supplémentaires pour le bouton Reset Data */
+        .btn-danger {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+        }
+    
+        .btn-danger:hover {
+            background-color: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+        }
+    
+        .btn-danger:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 3px rgba(239, 68, 68, 0.2);
+        }
+    
+        .btn-danger::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.5s ease;
+        }
+    
+        .btn-danger:hover::before {
+            left: 100%;
+        }
+    
+        .btn-danger:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+        }
+    
+        /* Animation d'icône (optionnelle) */
+        .btn-danger i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+    
+        .btn-danger:hover i {
+            transform: rotate(90deg);
+        }
         /* Style pour la modale de confirmation */
         .modal-overlay {
             position: fixed;
@@ -97,15 +159,15 @@
         <!-- Import Form -->
         <form action="#" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="file1" class="form-label">Choose File 1:</label>
+                <label for="file1" class="form-label">Choose File 1 Employe:</label>
                 <input type="file" class="form-control" id="file1" name="file1" required>
             </div>
             <div class="mb-3">
-                <label for="file2" class="form-label">Choose File 2:</label>
+                <label for="file2" class="form-label">Choose File 2 Salary Structure :</label>
                 <input type="file" class="form-control" id="file2" name="file2" required>
             </div>
             <div class="mb-3">
-                <label for="file3" class="form-label">Choose File 3:</label>
+                <label for="file3" class="form-label">Choose File 3 Salary Structure Assignement:</label>
                 <input type="file" class="form-control" id="file3" name="file3" required>
             </div>
             
@@ -115,7 +177,9 @@
 
         <!-- Reset Data Button -->
         <form th:action="@{/import/reset-data}" method="post" id="resetForm">
-            <button type="button" class="btn btn-danger" id="resetButton">Reset Data</button>
+            <button type="button" class="btn btn-danger" id="resetButton">
+                <i class="fas fa-trash-alt"></i> Reset Data
+            </button>
         </form>
     </div>
     

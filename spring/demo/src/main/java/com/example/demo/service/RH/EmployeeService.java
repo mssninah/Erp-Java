@@ -1,5 +1,6 @@
 package com.example.demo.service.RH;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,9 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.dto.ERP.WarehouseDTO;
 import com.example.demo.dto.RH.EmployeeDTO;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
 
 @Service
 public class EmployeeService {
@@ -28,13 +32,17 @@ public class EmployeeService {
         this.restTemplate = restTemplate;
     }
 
-    public List<EmployeeDTO> getEmployee(String sid) throws Exception{
+    public List<EmployeeDTO> getEmployee(String sid, String searchQuery) {
         String doctype = "Employee";
         String fields = "[\"*\"]";
-        String filter = "[]";
-
-        String url = baseUrl + "/api/resource/" + doctype + "?fields=" + fields + "&filters=" + filter;
-
+        String filters = (searchQuery != null && !searchQuery.isEmpty())
+            ? "[[\"name\", \"like\", \"%" + searchQuery + "%\"]]"
+            : "[]";
+    
+        String encodedFilters = URLEncoder.encode(filters, StandardCharsets.UTF_8);
+        encodedFilters="[]";
+        String url = baseUrl + "/api/resource/" + doctype + "?fields=" + fields + "&filters=" + encodedFilters;
+    
         HttpHeaders headers = new HttpHeaders();
         headers.set("Cookie", "sid=" + sid);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
