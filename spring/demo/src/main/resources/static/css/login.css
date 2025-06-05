@@ -1,140 +1,167 @@
-/* Modern Card-Based UI - Enhanced Version */
-
-:root {
-    --primary: #4361ee;
-    --primary-hover: #3a56d4;
-    --primary-light: #ebf2ff;
-    --border-color: #e9ecef;
-    --text-primary: #2b2d42;
-    --text-secondary: #495057;
-    --success: #4cc9f0;
-    --danger: #f72585;
-    --radius: 12px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* Card Enhancements */
-  .card {
+/* Style girly moderne et fluide */
+.card {
     border: none;
-    border-radius: var(--radius);
-    background: white;
-    box-shadow: var(--shadow);
+    border-radius: 20px;
+    background: linear-gradient(145deg, #fff5f5, #fff);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.15);
     overflow: hidden;
-    transition: var(--transition);
-  }
-  
-  .card:hover {
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  }
-  
-  .card-body {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.25);
+}
+
+.card-body {
     padding: 2.5rem !important;
-  }
-  
-  /* Form Elements */
-  .form-control {
-    border-radius: var(--radius);
-    padding: 0.875rem 1.25rem;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-    background-color: #f8f9fa;
-  }
-  
-  .form-control:focus {
-    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
-    border-color: var(--primary);
-    background-color: white;
-  }
-  
-  /* Labels */
-  .form-label {
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMTkzLDIwMywwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+}
+
+.form-control {
+    border-radius: 12px;
+    padding: 14px 20px;
+    border: 2px solid #ffd6e7;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
     font-size: 0.95rem;
-  }
-  
-  /* Buttons */
-  .btn-primary {
-    padding: 0.875rem 1.75rem;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.3rem rgba(255, 182, 193, 0.25);
+    border-color: #ffb6c1;
+    background-color: white;
+}
+
+.form-control::placeholder {
+    color: #ffb6c1;
+    opacity: 0.6;
+}
+
+.btn-primary {
+    padding: 14px;
     font-weight: 600;
-    background-color: var(--primary);
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
     border: none;
-    border-radius: var(--radius);
+    border-radius: 12px;
+    color: white;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
-  }
-  
-  .btn-primary:active {
-    transform: translateY(0);
-  }
-  
-  /* Alerts */
-  .alert {
-    border-radius: var(--radius);
-    font-size: 0.925rem;
-    padding: 1rem 1.5rem;
-    border-left: 4px solid transparent;
-  }
-  
-  .alert-success {
-    background-color: rgba(76, 201, 240, 0.1);
-    border-left-color: var(--success);
-    color: var(--text-primary);
-  }
-  
-  .alert-danger {
-    background-color: rgba(247, 37, 133, 0.1);
-    border-left-color: var(--danger);
-    color: var(--text-primary);
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
+    box-shadow: 0 4px 15px rgba(255, 154, 158, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #fad0c4, #ff9a9e);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(255, 154, 158, 0.6);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: 0.5s;
+}
+
+.btn-primary:hover::after {
+    transform: translateX(100%);
+}
+
+.alert {
+    border-radius: 12px;
+    font-size: 0.9rem;
+    background-color: rgba(255, 182, 193, 0.2);
+    border: 1px solid #ffb6c1;
+    color: #d63384;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #ff6b8b;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+/* Animation pour le chargement de la page */
+.card {
+    animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
-  
-  .card {
-    animation: fadeIn 0.5s ease forwards;
-  }
-  
-  /* File Input Styling */
-  input[type="file"] {
-    padding: 1.5rem;
-    background: var(--primary-light);
-    border: 1px dashed var(--border-color);
-    transition: var(--transition);
-  }
-  
-  input[type="file"]:hover {
-    border-color: var(--primary);
-    background: rgba(67, 97, 238, 0.05);
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .card-body {
-      padding: 1.75rem !important;
+}
+
+/* Effet de vague girly en bas de la carte */
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4, #ff9a9e);
+    background-size: 200% auto;
+    animation: wave 3s linear infinite;
+    border-radius: 0 0 20px 20px;
+}
+
+@keyframes wave {
+    0% {
+        background-position: 0% center;
     }
-    
-    .form-control {
-      padding: 0.75rem 1rem;
+    100% {
+        background-position: 200% center;
     }
-  }
+}
+
+/* Effet de surbrillance au survol des champs */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group:hover .form-label {
+    transform: translateX(5px);
+}
+
+.form-label {
+    transition: transform 0.3s ease;
+}
+
+/* Icônes mignonnes (à ajouter avec Font Awesome) */
+.form-group::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    top: 42px;
+    color: #ffb6c1;
+    z-index: 2;
+}
+
+.form-group.email::before {
+    content: '\f0e0';
+}
+
+.form-group.password::before {
+    content: '\f023';
+}

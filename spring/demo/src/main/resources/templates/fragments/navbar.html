@@ -86,21 +86,21 @@
                 <!-- Menu RH -->
                 <ul class="navbar-nav me-auto" th:if="${activeApp == 'rh'}">
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/import}">
-                            <i class="bi bi-cloud-arrow-up me-2"></i>
-                            <span>Import</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link d-flex align-items-center" th:href="@{/employee}">
                             <i class="bi bi-person-badge me-2"></i>
                             <span>Employés</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link d-flex align-items-center" th:href="@{/employee}">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/salary/all}">
                             <i class="bi bi-cash-stack me-2"></i>
                             <span>Paie</span>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-flex align-items-center" th:href="@{/csv}">
+                            <i class="bi bi-cash-coin me-2"></i>
+                            <span>CSV</span>
                         </a>
                     </li>
                     <!-- Ajoute d'autres liens RH ici -->

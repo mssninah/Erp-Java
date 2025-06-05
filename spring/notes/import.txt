@@ -1,7 +1,7 @@
 
 
 ### **Étape 1 : Importer les données du fichier 1 (Employés)**
-
+#insrt employe
 Les données du fichier 1 sont utilisées pour créer ou mettre à jour des employés dans le système.
 
 | **Ref** | **Nom** | **Prenom** | **Genre** | **Date embauche** | **Date naissance** | **Company** |
@@ -12,7 +12,7 @@ Les données du fichier 1 sont utilisées pour créer ou mettre à jour des empl
 ---
 
 ### **Étape 2 : Importer les données du fichier 2 (Salary Structure)**
-
+#insert salry structure and salary component
 Les données du fichier 2 définissent la **Salary Structure** pour les employés, qui sera utilisée pour calculer leurs salaires.
 
 | **Name** | **Abbr**     | **Type**  | **Valeur**        | **Company** |
@@ -24,7 +24,7 @@ Les données du fichier 2 définissent la **Salary Structure** pour les employé
 ---
 
 ### **Étape 3 : Importer les données du fichier 3 (Salary Structure Assignment)**
-
+#salary structure assistnemtn 
 Les données du fichier 3 affectent une structure salariale aux employés pour des mois spécifiques, avec des salaires de base correspondants.
 
 | **Mois**   | **Ref Employé** | **Salaire Base** | **Salary Structure** |
@@ -61,3 +61,6 @@ Mois,Ref Employe,Salaire Base,Salaire
 01/03/2025,2,900000,gasy1
 ```
 
+
+
+la question est ce que je dois crerer directemt le salary slip et le payer logiquement 

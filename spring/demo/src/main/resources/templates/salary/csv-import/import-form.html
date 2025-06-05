@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Salaires</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link href="/css/styles.css" rel="stylesheet">
+    <style>
+        .employee-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            padding: 2rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .employee-label {
+            font-weight: 500;
+            color: #555;
+        }
+        .employee-value {
+            font-weight: 600;
+            color: #222;
+        }
+        .salary-table th, .salary-table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Inclure la navbar -->
+    <div th:replace="~{fragments/navbar :: navbar('rh')}"></div>
+
+    <!-- Message de succès -->
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        <span th:text="${message}"></span>
+    </div>
+    <!-- Message d'erreur -->
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <div th:each="er : ${error}">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span th:text="${er}"></span>
+        </div>
+    </div>
+        <!-- Display success message reset -->
+        <div class="alert alert-success" th:if="${success}" th:text="${success}"></div>
+
+        <!-- Display error messages reset -->
+        <div class="alert alert-danger" th:if="${error}" th:utext="${error}"></div>
+
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="mb-1"><i class="bi bi-file-earmark-arrow-up"></i> Import CSV</h2>
+            </div>
+        </div>
+
+        <div class="card mt-4 p-4">
+            <form th:action="@{/csv}" class="row g-2 align-items-end mb-3" method="POST" enctype="multipart/form-data">
+                <div class="col-12">
+                    <label for="mois" class="form-label mb-0">Employee</label>
+                    <input type="file" name="employee" accept=".csv" class="form-control" placeholder="CSV" required>
+                </div>
+                <div class="col-12">
+                    <label for="mois" class="form-label mb-0">Salary Structure</label>
+                    <input type="file" name="salary_structure" accept=".csv" class="form-control" placeholder="CSV" required>
+                </div>
+                <div class="col-12">
+                    <label for="mois" class="form-label mb-0">Salary Slip</label>
+                    <input type="file" name="salary_slip" accept=".csv" class="form-control" placeholder="CSV" required>
+                </div>
+                <div class="col-12 mb-4">
+                    <button type="submit" class="btn btn-primary">Filtrer</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Reset Data Button -->
+        <form th:action="@{/csv/reset-data}" method="post" id="resetForm">
+            <button type="button" class="btn btn-danger" id="resetButton">
+                <i class="fas fa-trash-alt"></i> Reset Data
+            </button>
+        </form>
+         <!-- Modal de confirmation -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-title">Confirmation requise</div>
+            <p>Êtes-vous sûr de vouloir effacer toutes les données ? Cette action est irréversible.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" id="cancelButton">Annuler</button>
+                <button class="modal-btn modal-btn-confirm" id="confirmButton">Confirmer</button>
+            </div>
+        </div>
+    </div>
+        
+    </div>
+
+
+  
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resetButton = document.getElementById('resetButton');
+            const confirmModal = document.getElementById('confirmModal');
+            const cancelButton = document.getElementById('cancelButton');
+            const confirmButton = document.getElementById('confirmButton');
+            const resetForm = document.getElementById('resetForm');
+            
+            // Ouvrir la modale au clic sur Reset
+            resetButton.addEventListener('click', function() {
+                confirmModal.classList.add('active');
+            });
+            
+            // Annuler la suppression
+            cancelButton.addEventListener('click', function() {
+                confirmModal.classList.remove('active');
+            });
+            
+            // Confirmer la suppression
+            confirmButton.addEventListener('click', function() {
+                resetForm.submit();
+            });
+            
+            // Fermer la modale en cliquant à l'extérieur
+            confirmModal.addEventListener('click', function(e) {
+                if (e.target === confirmModal) {
+                    confirmModal.classList.remove('active');
+                }
+            });
+            
+            // Fermer avec la touche Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && confirmModal.classList.contains('active')) {
+                    confirmModal.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
