@@ -1,7 +1,10 @@
 package com.example.demo.controller.RH;
 
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +20,11 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import com.example.demo.dto.RH.EmployeeDTO;
+import com.example.demo.dto.RH.SalaryComponentDTO;
 import com.example.demo.dto.RH.SalarySlipDTO;
+import com.example.demo.dto.RH.StatistiqueDTO;
 import com.example.demo.service.RH.EmployeeService;
+import com.example.demo.service.RH.SalaryComponentService;
 import com.example.demo.service.RH.SalarySlipService;
 
 import jakarta.servlet.http.HttpServletResponse;
@@ -34,6 +40,9 @@ public class SalarySlipController {
 
     @Autowired
     private SpringTemplateEngine templateEngine;
+
+    @Autowired 
+    private SalaryComponentService salaryComponentService;
 
 
     @GetMapping("/{EmployeeId}")
@@ -113,8 +122,11 @@ public class SalarySlipController {
         Model model
     ){
         List<SalarySlipDTO> salarys = salarySlipService.getSalarySlip(sid);
+        salarys = salarySlipService.completeSalarySlip(sid, salarys);
+        List<SalaryComponentDTO> components = salaryComponentService.getSalaryComponent(sid);
 
         model.addAttribute("salarys", salarys);
+        model.addAttribute("components", components);
         return "salary/salary-all";
     }
 
@@ -126,9 +138,75 @@ public class SalarySlipController {
         Model model
     ){
         List<SalarySlipDTO> salarys = salarySlipService.getSalarySlip(sid);
+        salarys = salarySlipService.completeSalarySlip(sid, salarys);
+        List<SalaryComponentDTO> components = salaryComponentService.getSalaryComponent(sid);
         salarys = salarySlipService.getSalarySlipByMonth(sid, salarys, mois, annee);
 
         model.addAttribute("salarys", salarys);
+        model.addAttribute("components", components);
         return "salary/salary-all";
     }
+  
+
+
+
+
+
+    ///////////////
+    @GetMapping("/statistique")
+    public String showStatistique(
+        @CookieValue(name = "sid", required = true) String sid,
+        @RequestParam(name = "annee", required = false) Integer anneeParam,
+        Model model
+    ) {
+        try {
+            int annee = (anneeParam != null) ? anneeParam : 2025;
+    
+            StatistiqueDTO statistique = new StatistiqueDTO();
+            statistique.setAnnee(annee);
+    
+            List<SalarySlipDTO> allSalarys = salarySlipService.getSalarySlip(sid);
+            allSalarys = salarySlipService.completeSalarySlip(sid, allSalarys);
+    
+            Map<Integer, List<SalarySlipDTO>> salarySlipsByMonth = new HashMap<>();
+    
+            for (int mois = 1; mois <= 12; mois++) {
+                List<SalarySlipDTO> salarysOfMonth = salarySlipService.getSalarySlipByMonth(sid, allSalarys, mois, annee);
+                salarySlipsByMonth.put(mois, salarysOfMonth);
+            }
+    
+            statistique.setSalarySlips(salarySlipsByMonth);
+    
+            model.addAttribute("statistique", statistique);
+            return "salary/statistiques/list-salary";
+    
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            model.addAttribute("statistique", new StatistiqueDTO());
+            return "salary/statistiques/list-salary";
+        }
+    }
+    @PostMapping("/statistiques/details")
+    public String showSalaryDetailsByMonth(
+        @CookieValue(name = "sid", required = true) String sid,
+        @RequestParam int mois,
+        @RequestParam int annee,
+        Model model
+    ) {
+        // Récupérer et compléter les salaires
+        List<SalarySlipDTO> salaries = salarySlipService.getSalarySlip(sid);
+        salaries = salarySlipService.completeSalarySlip(sid, salaries);
+        salaries = salarySlipService.getSalarySlipByMonth(sid, salaries, mois, annee);
+
+        // Formater le mois et l'année pour l'affichage
+        String monthYear = String.format("%02d/%d", mois, annee);
+
+        // Ajouter les données au modèle
+        model.addAttribute("salaries", salaries);
+        model.addAttribute("monthYear", monthYear);
+
+        return "salary/statistiques/details-salary";
+    }
+    
+
 }

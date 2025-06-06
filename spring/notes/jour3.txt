@@ -1,0 +1,23 @@
+créer une page statistiques
+ qui va contenir un tableau 
+ vec 1 ligne par mois contenant 
+ le total des salaires des employés , 
+ et mettre aussi les détails par éléments de salaire,
+( avec un filtre par année)
+
+
+page = (salary/statistiques/list-salary.html)
+tableau 
+
+input year (bouton filtrer)
+
+tableau 
+header (mois,annee, total salaire, total deduction, total earning, bouton (voir details))
+footer (total, total year salaire, total year deduction, total year earning )
+
+page=(salary/statistiques/details-salary.html)
+page details statistiques
+employe_id, employe_name,  salaire(mois,anee),  deduction(mois,anee),  earning(mois,annee)
+on a la liste des employe qui ont ete paye pendant ce mois, 
+
+
